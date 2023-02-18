@@ -3,7 +3,7 @@ class Deck
 
   def initialize
     @suits = ['♠', '♥', '♣', '♦']
-    @cards = ['2', '3', '4', '5', '6', '7', '9', '10', 'J', 'Q', 'K', 'T']
+    @cards = %w[2 3 4 5 6 7 9 10 J Q K T]
   end
 
   def drop_card
@@ -15,5 +15,4 @@ class Deck
     @deck = []
     @cards.each { |card| @suits.each { |suit| @deck << card + suit } }
   end
-
 end

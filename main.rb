@@ -1,5 +1,10 @@
+require_relative 'deck'
 require_relative 'game'
+require_relative 'player'
+require_relative 'interface'
 
-p = Player.new('Nate')
-d = Deck.new
-g = Game.new(p, d)
+puts 'Введите ваше имя:'
+name = $stdin.gets.chomp
+
+interface = Interface.new(name)
+interface.start
