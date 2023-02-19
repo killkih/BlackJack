@@ -12,8 +12,12 @@ class Player
     @cards << deck.drop_card
   end
 
+  def negative_balance?
+    true if (money - 10).negative?
+  end
+
   def bet
-    self.money -= 10 unless (money - 10).negative?
+    self.money -= 10 unless negative_balance?
   end
 
   def points

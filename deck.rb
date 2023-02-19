@@ -1,18 +1,18 @@
 class Deck
-  attr_reader :deck
+  attr_reader :cards
 
   def initialize
     @suits = ['♠', '♥', '♣', '♦']
-    @cards = %w[2 3 4 5 6 7 9 10 J Q K T]
+    @cards_values = %w[2 3 4 5 6 7 9 10 J Q K T]
   end
 
   def drop_card
-    card = @deck.sample
-    @deck.delete(card)
+    card = cards.sample
+    cards.delete(card)
   end
 
   def refresh
-    @deck = []
-    @cards.each { |card| @suits.each { |suit| @deck << card + suit } }
+    @cards = []
+    @cards_values.each { |card| @suits.each { |suit| cards << card + suit } }
   end
 end

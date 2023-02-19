@@ -2,6 +2,10 @@ class Game
   attr_accessor :bank
   attr_reader :player, :dealer, :deck
 
+  MAX_POINTS = 21
+  MAX_DEALER_POINTS = 17
+  MAX_NUMBER_OF_CARDS = 3
+
   def initialize(player, deck)
     @player = player
     @dealer = Player.new('Dealer')
@@ -29,11 +33,11 @@ class Game
   end
 
   def add_card?
-    add_card(@dealer) if @dealer.points < 17
+    add_card(@dealer) if @dealer.points < MAX_DEALER_POINTS
   end
 
   def add_card(player)
-    player.take_card(deck) if player.cards.size < 3
+    player.take_card(deck) if player.cards.size < MAX_NUMBER_OF_CARDS
   end
 
   def next_game
@@ -42,20 +46,20 @@ class Game
   end
 
   def finish_game?
-    end_game if player.cards.size == 3 && dealer.cards.size == 3
+    end_game if player.cards.size == MAX_NUMBER_OF_CARDS && dealer.cards.size == MAX_NUMBER_OF_CARDS
   end
 
   def who_won?
     @winner = nil
-    if player.points != dealer.points && player.points < 22 && dealer.points < 22
+    if player.points != dealer.points && player.points <= MAX_POINTS && dealer.points <= MAX_POINTS
       if player.points > dealer.points
         @winner = player
       elsif player.points < dealer.points
         @winner = dealer
       end
-    elsif player.points < 22 && dealer.points > 21
+    elsif player.points <= MAX_POINTS && dealer.points > MAX_POINTS
       @winner = player
-    elsif dealer.points < 22 && player.points > 21
+    elsif dealer.points <= MAX_POINTS && player.points > MAX_POINTS
       @winner = dealer
     end
   end
